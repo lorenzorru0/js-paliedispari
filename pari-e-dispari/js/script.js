@@ -20,16 +20,28 @@ buttonPlay.addEventListener("click",
         var evenOrOddValue = document.getElementById("even-or-odd").value;
         var userNumber = parseInt(document.getElementById("number").value);
         var computerNumber = randomNumber(1, 5);
-        console.log(computerNumber)
 
         var sum = addTwoNumbers(userNumber, computerNumber);
-        console.log(sum);
         var evenOrOddResult = evenOrOdd(sum);
 
-        if (evenOrOddValue == evenOrOddResult) {
-            alert("Win");
+        var result = document.getElementById("result");
+
+        result.classList.remove("win");
+        result.classList.remove("lose");
+
+        if (evenOrOddValue == "" || isNaN(userNumber)) {
+            result.innerHTML = "Errore! Inserisci i dati";
+            result.classList.add("view");
         } else {
-            alert("Lose");
+            if (evenOrOddValue == evenOrOddResult) {
+                result.innerHTML = "Hai vinto";
+                result.classList.add("view");
+                result.classList.add("win");
+            } else {
+                result.innerHTML = "Hai perso";
+                result.classList.add("view");
+                result.classList.add("lose");
+            }
         }
     }
 );
